@@ -7,5 +7,5 @@ Things you may want to cover:
 * Ruby version
 
 * Gems:
-  bulma
+  bulma,
   devise
