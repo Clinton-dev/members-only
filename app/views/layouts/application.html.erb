@@ -10,6 +10,54 @@
   </head>
 
   <body>
+     <% if flash[:notice]%>
+       <div class="notification is-primary">
+         <%= notice%>
+       </div>
+     <% end %>
+     <%if flash[:alert]%>
+       <div class="notification is-danger">
+         <%= alert%>
+       </div>
+     <% end %>
+     <nav class="navbar has-background-info-dark">
+       <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-5">members-only club</h1>
+          <div class="navbar-burger burger" data-target="navbarBasicExample">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        <% end %>
+       </div>
+       <div class="navbar-end">
+        <div class="navbar-item">
+         <div class="field is-grouped">
+           <% if user_signed_in?%>
+            <p class="control" id="username">
+            hi 
+             <%= current_user.name%>
+            </p>
+            <p class="control">
+             <%= link_to 'new post', new_post_path, class: "button is-info is-inverted"%>
+           </p>
+            <p class="control">
+              <%= link_to 'logout', destroy_user_session_path, method: :delete, class:"button is-info"%>
+            </p>
+           <% else%>
+            <p class="control">
+             <%= link_to 'sign_in', new_user_session_path, class:"button is-info is-inverted"%>
+            </p>
+            <p class="control">
+             <%= link_to 'sign_up', new_user_registration_path, class:"button is-info"%>
+            </p>
+           <% end%>
+         </div>
+        </div>
+      </div>
+    </div>
+     </nav>
     <%= yield %>
   </body>
 </html>
